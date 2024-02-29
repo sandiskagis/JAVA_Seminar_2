@@ -56,7 +56,7 @@ public class Grade {
     //3.constructors
     public Grade(){
         setgID();
-        setValue(4);
+        setValue(1);
         setStudent(new Student());
         setCourse(new Course());
     }
@@ -71,7 +71,7 @@ public class Grade {
 
     //4.toString
     public String toString(){
-        return gID + ": " + value + " " + student + " " + course;
+        return gID + ": " + value + "-> " + student.getName() + " " + student.getSurname() + course;
     }
     //5.other functions
 }
