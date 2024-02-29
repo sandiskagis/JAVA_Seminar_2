@@ -54,8 +54,6 @@ public class Professor {
     }
 
 
-
-
     //3.constructors
 
     public Professor(){
