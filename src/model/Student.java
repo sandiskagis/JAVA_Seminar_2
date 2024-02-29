@@ -50,10 +50,17 @@ public class Student {
         setSurname("Liepiņš");
     }
 
-    public Student(String name, String surname, Degree degree){
+    public Student(String name, String surname){
         setsID();
         setName(name);
         setSurname(surname);
     }
+
+    //4.toString
+    public String toString(){
+        return sID + ": " + name + " " + surname;
+    }
+
+    //5.other functions
 
 }
