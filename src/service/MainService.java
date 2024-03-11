@@ -290,7 +290,10 @@ public class MainService {
     }
 
 
-
+//TODO
+    //sort student by averageGrade
+    //apskatīt Professor klasi
+    //
 
 
 
