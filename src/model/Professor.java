@@ -1,10 +1,9 @@
 package model;
 
-public class Professor {
+public class Professor extends Person{
     //1. variables
     private long pID;
-    private String name;
-    private String surname;
+
     private Degree degree;
 
     private static long counter = 0; //ne get, ne set funkcijas
@@ -12,14 +11,6 @@ public class Professor {
     //2. get and set
     public long getpID(){
         return pID;//atgriež pašu vērtību
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
     }
 
     public Degree getDegree() {
@@ -31,21 +22,6 @@ public class Professor {
         counter++;
     }
 
-    public void setName(String name) {
-        if(name != null && name.matches("[A-ZĒŪĪĻĶĢŠĀŽČŅ]{1}[a-zēūīļķģšāžčņ]+")) {
-            this.name = name;
-        }
-        else
-            this.name = "Undefined";
-
-    }
-
-    public void setSurname(String surname) {
-        if(surname != null && surname.matches("[A-ZĒŪĪĻĶĢŠĀŽČŅ]{1}[a-zēūīļķģšāžčņ]+"))
-            this.surname = surname;
-        else
-            this.surname = "Undefined";
-    }
 
     public void setDegree(Degree degree) {
         if(degree != null)
@@ -56,16 +32,14 @@ public class Professor {
 
     //3. constructors
     public Professor() {
+        super();//te tiks izsaukts noklusētais Person() konstruktors. super() koandai ir jābūt 1.koda rindā funkcijā
         setpID();
-        setName("Jānis");
-        setSurname("Bērziņš");
         setDegree(Degree.other);
     }
 
-    public Professor(String name, String surname, Degree degree) {
+    public Professor(String name, String surname, Degree degree, String personCode) {
+        super(name, surname, personCode);//te tiek izsaukts public Person(String name, String surname, String personCode) konstruktors
         setpID();
-        setName(name);
-        setSurname(surname);
         setDegree(degree);
     }
 
@@ -82,7 +56,7 @@ public class Professor {
     //4.toString - manis paša
     public String toString()
     {
-        return pID + ": " + degree + ", " + name + " " + surname;
+        return pID + ": " + degree + ", " + super.toString();
     }
 
     //5. other functions
