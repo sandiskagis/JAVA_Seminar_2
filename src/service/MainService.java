@@ -19,7 +19,7 @@ public class MainService {
 
     public static void main(String[] args) {
         Professor pr1 = new Professor();
-        Professor pr2 = new Professor("Karina", "Šķirmante", Degree.mg);
+        Professor pr2 = new Professor("Karina", "Šķirmante", Degree.mg, "112200-32327");
         allProfessors.add(pr1);
         allProfessors.add(pr2);
 

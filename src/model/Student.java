@@ -1,17 +1,20 @@
 package model;
 
-public class Student {
+public class Student extends Person
+{
     //1.variables
     private long sID;
 
     private static long counter = 10000; //ne get, ne set funkcijas
     //2.get and set
 
-    public long getsID() {
+    public long getsID()
+    {
         return sID;
     }
 
-    public void setsID() {
+    public void setsID()
+    {
         this.sID = counter;
         counter++;
     }
@@ -19,9 +22,6 @@ public class Student {
 
 
     //3. constructors
-
-
-
     public Student()
     {
         setsID();
@@ -30,15 +30,15 @@ public class Student {
         setPersonCode("123456-12345");
     }
 
-    public Student(String name, String surname, String personCode) {
+    public Student(String name, String surname, String personCode)
+    {
+        super(name, surname, personCode);
         setsID();
-        setName(name);
-        setSurname(surname);
-        setPersonCode(personCode);
     }
     //4. toString
-    public String toString() {
-        return sID + ": " + name + " " + surname + "(" + personCode + ")";
+    public String toString()
+    {
+        return sID + ": " + super.toString();
     }
 
 
