@@ -2,17 +2,13 @@ package service;
 
 import java.util.ArrayList;
 
-import model.Course;
-import model.Degree;
-import model.Grade;
-import model.Professor;
-import model.Student;
+import model.*;
 
 public class MainService {
 
-
-    private static ArrayList<Professor> allProfessors = new ArrayList<Professor>();
-    private static ArrayList<Student> allStudents = new ArrayList<Student>();
+    private static ArrayList<Person> allPersons = new ArrayList<Person>();
+    //private static ArrayList<Professor> allProfessors = new ArrayList<Professor>();
+    //private static ArrayList<Student> allStudents = new ArrayList<Student>();
     private static ArrayList<Course> allCourses = new ArrayList<Course>();
     private static ArrayList<Grade> allGrades = new ArrayList<Grade>();
 
@@ -20,20 +16,24 @@ public class MainService {
     public static void main(String[] args) {
         Professor pr1 = new Professor();
         Professor pr2 = new Professor("Karina", "Šķirmante", Degree.mg, "112200-32327");
-        allProfessors.add(pr1);
-        allProfessors.add(pr2);
+        //allProfessors.add(pr1);
+        //allProfessors.add(pr2);
+        allPersons.add(pr1);
+        allPersons.add(pr2);
 
-        for(Professor tempPr : allProfessors) {
-            System.out.println(tempPr);
-        }
+//        for(Professor tempPr : allProfessors) {
+//            System.out.println(tempPr);
+//        }
 
 
         Student stu1 = new Student();
         Student stu2 = new Student("Klāvs", "Grīnvalds", "121290-45678");
-        allStudents.add(stu1);
-        allStudents.add(stu2);
+        //allStudents.add(stu1);
+        //allStudents.add(stu2);
+        allPersons.add(stu1);
+        allPersons.add(stu2);
 
-        for(Student tempSt: allStudents) {
+        for(Person tempSt: allPersons) {
             System.out.println(tempSt);
         }
 
@@ -99,8 +99,12 @@ public class MainService {
         }
 
         System.out.println("-------------------");
-        for(Student tempSt: allStudents) {
-            System.out.println(tempSt);
+        for(Person tempSt: allPersons)
+        {
+            if(tempSt instanceof Student)
+            {
+                System.out.println(tempSt);
+            }
         }
 
         try {
@@ -110,8 +114,12 @@ public class MainService {
             e.printStackTrace();
         }
         System.out.println("-------------------");
-        for(Student tempSt: allStudents) {
-            System.out.println(tempSt);
+        for(Person tempSt: allPersons)
+        {
+            if(tempSt instanceof Student)
+            {
+                System.out.println(tempSt);
+            }
         }
 
 
@@ -194,15 +202,18 @@ public class MainService {
         }
 
 
-        for(Student tempSt: allStudents) {
-            if(tempSt.getPersonCode().equals(personCode)) {
-                throw new Exception(tempSt.getName() +" " + tempSt.getSurname()
-                        + " is already registered in the system");
+        for(Person tempSt: allPersons) {
+            if(tempSt instanceof Student){
+                if(tempSt.getPersonCode().equals(personCode)) {
+                    throw new Exception(tempSt.getName() +" " + tempSt.getSurname()
+                            + " is already registered in the system");
+                }
             }
+
         }
 
         Student newStudent = new Student(name, surname, personCode);
-        allStudents.add(newStudent);
+        allPersons.add(newStudent);
 
 
     }
@@ -215,10 +226,12 @@ public class MainService {
         }
 
         //2. ejot cauri foreach cikla visiem studentiem, atrast konkrēto pēc personas koda
-        for(Student tempSt : allStudents) {
-            if(tempSt.getPersonCode().equals(personCode)) {
-                //3. atgriezt pašu atrasto stuedntu
-                return tempSt;
+        for(Person tempSt: allPersons) {
+            if(tempSt instanceof Student){
+                if(tempSt.getPersonCode().equals(personCode)) {
+                    //3. atgriezt pašu atrasto stuedntu
+                    return (Student) tempSt;
+                }
             }
         }
         //4. pēc foreach cikla beigām izmest izņemu, ka tāds students neeksistē sistemā
@@ -234,13 +247,16 @@ public class MainService {
         if(personCode == null || newSurname == null) {
             throw new Exception("Problems with input arguments");
         }
-        for(Student tempSt : allStudents) {
-            if(tempSt.getPersonCode().equals(personCode)) {
-                if(!tempSt.getSurname().equals(newSurname))
+        for(Person tempSt: allPersons) {
+            if(tempSt instanceof Student){
+                if(tempSt.getPersonCode().equals(personCode))
                 {
-                    tempSt.setSurname(newSurname);
+                    if (!tempSt.getSurname().equals(newSurname))
+                    {
+                        tempSt.setSurname(newSurname);
+                    }
+                    return;
                 }
-                return;
 
             }
         }
@@ -257,11 +273,13 @@ public class MainService {
             throw new Exception("Problems with input arguments");
         }
         //2. atrodam studentu, ko gribam dzest
-        for(Student tempSt : allStudents) {
-            if(tempSt.getPersonCode().equals(personCode)) {
-                //3. remove funkciju izdzēšam un return
-                allStudents.remove(tempSt);
-                return;
+        for(Person tempSt: allPersons) {
+            if(tempSt instanceof Student) {
+                if (tempSt.getPersonCode().equals(personCode)) {
+                    //3. remove funkciju izdzēšam un return
+                    allPersons.remove(tempSt);
+                    return;
+                }
             }
         }
 
