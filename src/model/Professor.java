@@ -1,16 +1,16 @@
 package model;
 
 public class Professor {
-    //1.variables
+    //1. variables
     private long pID;
     private String name;
     private String surname;
     private Degree degree;
 
-    private static long counter = 0; // ne get ne set funkcijas, lai nelauj mainit ta vertibu, lai nesakrit professor id
+    private static long counter = 0; //ne get, ne set funkcijas
 
-    //2.get and set
-    public long getPID(){
+    //2. get and set
+    public long getpID(){
         return pID;//atgriež pašu vērtību
     }
 
@@ -18,29 +18,30 @@ public class Professor {
         return name;
     }
 
-    public String getSurname(){
+    public String getSurname() {
         return surname;
     }
 
-    public Degree getDegree(){
+    public Degree getDegree() {
         return degree;
     }
 
-    public void setpID(){
+    public void setpID() {
         pID = counter;
         counter++;
     }
 
-    public void setName(String name){
-        if(name != null && name.matches("[A-ZĀĒŪĪŠĢĶĻŽČŅ]{1}[a-zēūīāšģķļžčņ]+")){
+    public void setName(String name) {
+        if(name != null && name.matches("[A-ZĒŪĪĻĶĢŠĀŽČŅ]{1}[a-zēūīļķģšāžčņ]+")) {
             this.name = name;
         }
         else
             this.name = "Undefined";
+
     }
 
     public void setSurname(String surname) {
-        if(name != null && name.matches("[A-ZĀĒŪĪŠĢĶĻŽČŅ]{1}[a-zēūīāšģķļžčņ]+"))
+        if(surname != null && surname.matches("[A-ZĒŪĪĻĶĢŠĀŽČŅ]{1}[a-zēūīļķģšāžčņ]+"))
             this.surname = surname;
         else
             this.surname = "Undefined";
@@ -53,29 +54,37 @@ public class Professor {
             this.degree = Degree.other;
     }
 
-
-    //3.constructors
-
-    public Professor(){
+    //3. constructors
+    public Professor() {
         setpID();
         setName("Jānis");
         setSurname("Bērziņš");
         setDegree(Degree.other);
     }
 
-    public Professor(String name, String surname, Degree degree){
+    public Professor(String name, String surname, Degree degree) {
         setpID();
         setName(name);
         setSurname(surname);
         setDegree(degree);
     }
 
+	/*
+	//ģenerētā toString
+	public String toString() {
+		return "Professor [pID=" + pID + ", name=" + name + ", surname=" + surname + ", degree=" + degree + "]";
+	}
+	*/
 
-    //4.toString
-    public String toString(){
+
+
+
+    //4.toString - manis paša
+    public String toString()
+    {
         return pID + ": " + degree + ", " + name + " " + surname;
     }
 
+    //5. other functions
 
-    //5.other functions
 }

@@ -1,40 +1,39 @@
 package model;
 
 public class Grade {
-    //1.variables
-
+    //1. variables
     private long gID;
-    private int value;
+    private int grValue;
     private Student student;
     private Course course;
-    private static long counter = 200000; // ne get ne set funkcijas, lai nelauj mainit ta vertibu, lai nesakrit student id
 
-    //2.get and set
+    private static long counter = 200000; //ne get, ne set funkcijas
+    //2. get and set
 
-    public long getGID(){
-        return gID;//atgriež pašu vērtību
+    public long getgID() {
+        return gID;
     }
-    public void setgID(){
-        gID = counter;
+
+    public void setgID() {
+        this.gID = counter;
         counter++;
     }
 
-
-    public long getValue(){
-        return value;//atgriež pašu vērtību
+    public int getGrValue() {
+        return grValue;
     }
-    public void setValue(int value){
-        if(value >= 0 && value <= 10){
-            this.value = value;
-        }
+
+    public void setGrValue(int grValue) {
+        if(grValue >= 0 && grValue <=10)
+            this.grValue = grValue;
         else
-            this.value = 1;
+            this.grValue = 0;
     }
 
-
-    public Student getStudent(){
+    public Student getStudent() {
         return student;
     }
+
     public void setStudent(Student student) {
         if(student != null)
             this.student = student;
@@ -42,10 +41,10 @@ public class Grade {
             this.student = new Student();
     }
 
-
-    public Course getCourse(){
+    public Course getCourse() {
         return course;
     }
+
     public void setCourse(Course course) {
         if(course != null)
             this.course = course;
@@ -53,25 +52,29 @@ public class Grade {
             this.course = new Course();
     }
 
-    //3.constructors
-    public Grade(){
+
+
+    //3. constructors
+    public Grade() {
         setgID();
-        setValue(1);
+        setGrValue(1);
         setStudent(new Student());
         setCourse(new Course());
     }
 
-    public Grade(int value, Student student, Course course){
+    public Grade(int grValue, Student student, Course course) {
         setgID();
-        setValue(value);
+        setGrValue(grValue);
         setStudent(student);
         setCourse(course);
     }
 
 
     //4.toString
-    public String toString(){
-        return gID + ": " + value + "-> " + student.getName() + " " + student.getSurname() + course;
+
+    public String toString() {
+        return gID + ":" + grValue + "->" + student.getName()
+                + " " + student.getSurname() + "(" + course.getTitle()+ ")";
     }
     //5.other functions
 }
